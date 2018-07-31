@@ -13,17 +13,34 @@
    {:x (/ (q/width) 2)
     :y (/ (q/height) 2)}
    :planets
-   [[200 250 1 [255]]
-    [40 80 (/ -1 16) [220 0 0]]
-    [40 30 -50 [0 220 0]]
+   [[50 50 1 [255]]
+    [40 20 12 [0 150 150]]
+    [20 20 -24 [150 0 150]]
+    [20 10 -50 [0 220 0]]
+    [3 4 45 [150 10 10]]
     [15 10 -20 [0 0 220]]
-    [20 5 (/ 1 32) [10 10 150]]
     [5 20 -2 [10 150 10]]
+    [4 8 (/ -1 16) [220 0 0]]
+    [2 5 (/ 1 32) [10 10 150]]
+
+    [3 4 45 [150 10 10]]
+    [2 5 (/ 1 32) [10 10 150]]
+    [5 20 -2 [10 150 10]]
+    [4 8 (/ -1 16) [220 0 0]]
+
+    [5 20 -2 [10 150 10]]
+    [3 4 45 [150 10 10]]
+    [2 5 (/ 1 32) [10 10 150]]
+    [4 8 (/ -1 16) [220 0 0]]
+
+    [2 5 (/ 1 32) [10 10 150]]
+    [5 20 -2 [10 150 10]]
+    [4 8 (/ -1 16) [220 0 0]]
     [3 4 45 [150 10 10]]]
    :t 0})
 
 (defn setup []
-  (q/frame-rate 128)
+  (q/frame-rate 512)
   (q/background 0)
   (create-initial-state))
 
@@ -35,11 +52,11 @@
          [a b s stroke] (first planets)
          moons (rest planets)]
     (let [mt (* t s)
-          mx (+ cx (* a (Math/sin mt)))
-          my (+ cy (* b (Math/cos mt)))]
+          mx (+ cx (* a (Math/cos mt)))
+          my (+ cy (* -1 b (Math/sin mt)))]
       (apply q/stroke stroke)
-      ; (when (empty? moons)
-      (q/point mx my)
+      (when (empty? moons)
+        (q/point mx my))
       (if (not (empty? moons))
         (recur mx my (first moons) (rest moons))))))
 
