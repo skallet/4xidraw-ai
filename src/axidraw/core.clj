@@ -13,30 +13,8 @@
    {:x (/ (q/width) 2)
     :y (/ (q/height) 2)}
    :planets
-   [[50 50 1 [255]]
-    [40 20 12 [0 150 150]]
-    [20 20 -24 [150 0 150]]
-    [20 10 -50 [0 220 0]]
-    [3 4 45 [150 10 10]]
-    [15 10 -20 [0 0 220]]
-    [5 20 -2 [10 150 10]]
-    [4 8 (/ -1 16) [220 0 0]]
-    [2 5 (/ 1 32) [10 10 150]]
-
-    [3 4 45 [150 10 10]]
-    [2 5 (/ 1 32) [10 10 150]]
-    [5 20 -2 [10 150 10]]
-    [4 8 (/ -1 16) [220 0 0]]
-
-    [5 20 -2 [10 150 10]]
-    [3 4 45 [150 10 10]]
-    [2 5 (/ 1 32) [10 10 150]]
-    [4 8 (/ -1 16) [220 0 0]]
-
-    [2 5 (/ 1 32) [10 10 150]]
-    [5 20 -2 [10 150 10]]
-    [4 8 (/ -1 16) [220 0 0]]
-    [3 4 45 [150 10 10]]]
+   [[200 200 1 [255]]
+    [5 6 12 [0 150 150]]]
    :t 0})
 
 (defn setup []
@@ -55,15 +33,15 @@
           mx (+ cx (* a (Math/cos mt)))
           my (+ cy (* -1 b (Math/sin mt)))]
       (apply q/stroke stroke)
-      (when (empty? moons)
-        (q/point mx my))
+      ; (when (empty? moons)
+      (q/point mx my)
       (if (not (empty? moons))
         (recur mx my (first moons) (rest moons))))))
 
 (defn update-state [state]
   (update state :t + (/ (* 2 Math/PI) 10000)))
 
-(q/defsketch exampl
+(q/defsketch example
   :title "Oh so many moons"
   :settings #(q/smooth 2)
   :setup setup
